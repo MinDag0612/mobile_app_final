@@ -1,19 +1,16 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
 }
 
 android {
-    namespace = "com.example.myapplication"
+    namespace = "com.example.home"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.myapplication"
         minSdk = 36
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -32,11 +29,13 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:core-ui"))
-    implementation(project(":features:auth"))
-    implementation(project(":features:ticket"))
-    implementation(project(":features:home"))
 
-    implementation(libs.androidx.appcompat)
+    implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.activity)
+    implementation(libs.constraintlayout)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    implementation(project(":core:core-ui"))
 }
